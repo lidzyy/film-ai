@@ -1,0 +1,28 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+
+# Jupyter
+.ipynb_checkpoints
+
+# Dados grandes
+data/raw/*.csv
+data/raw/*.json
+*.pkl
+
+# Modelos treinados (se forem muito grandes)
+models/*.pkl
+models/*.h5
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
