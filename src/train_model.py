@@ -2,6 +2,8 @@ import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import accuracy_score, classification_report
+import joblib
 
 df = pd.read_csv('data/raw/movie_reviews.csv')
 
@@ -24,12 +26,15 @@ model.fit(X_train_vec, y_train) # treinar
 y_pred = model.predict(X_test_vec) # Prever
 
 print(y_pred)
-"""
-As previsoes estao certas?
-Quantas acertou?
-Quantas errou?
-Taxa de acerto?
+print(y_test)
 
-Proximo Passo:
-  - avaliar o modelo
-"""
+accuracy = accuracy_score(y_test, y_pred)
+print(f"Taxa de acerto: {accuracy:.2%}")
+print(classification_report(y_test, y_pred))
+
+joblib.dump(model, 'models/sentiment_model.pkl')
+print("✅ Modelo salvo: models/sentiment_model.pkl")
+
+joblib.dump(vectorizer, 'models/vectorizer.pkl')
+print("✅ Vectorizer salvo: models/vectorizer.pkl")
+print("\n🎉 Modelo pronto para uso!")
